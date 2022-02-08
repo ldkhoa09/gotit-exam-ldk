@@ -40,12 +40,17 @@
    2. GiftSeeder: 3 gifts 
    3. VoucherSeeder: 100 vouchers and random value user_id in [1,3,3]
 
-8. Generate your application encryption key:
+   Or
+
+       Import database by sql file in "database/exam.sql"
+
+7. Generate your application encryption key:
 
         php artisan key:generate
 
-9. Start the localhost server:
+8. Start the localhost server:
 
         php artisan serve
+
 
 
