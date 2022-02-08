@@ -52,7 +52,7 @@ var KTGiftHandle = function () {
                     axios.post(submitButton.closest('form').getAttribute('action'), new FormData(form))
                         .then(function (response) {
                             Swal.fire({
-                                text: "Chúc mừng bạn đã trúng " + response.data.data.name,
+                                text:  "" + response.data.message,
                                 icon: "success",
                                 buttonsStyling: false,
                                 confirmButtonText: "Ok, got it!",

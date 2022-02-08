@@ -84,11 +84,11 @@ CREATE TABLE IF NOT EXISTS `gifts` (
 -- Dumping data for table gotit-exam.gifts: ~3 rows (approximately)
 /*!40000 ALTER TABLE `gifts` DISABLE KEYS */;
 REPLACE INTO `gifts` (`id`, `name`, `quantity`, `ratio`, `created_at`, `updated_at`) VALUES
-	(1, 'Iphone 13 Promax', 10, 5, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
+	(1, 'Iphone 13 Promax', 10, 5, '2022-02-07 17:54:20', '2022-02-08 14:46:33');
 REPLACE INTO `gifts` (`id`, `name`, `quantity`, `ratio`, `created_at`, `updated_at`) VALUES
-	(2, '1 triệu tiên mặt', 30, 30, '2022-02-07 17:54:20', '2022-02-08 06:20:28');
+	(2, '1 triệu tiên mặt', 30, 30, '2022-02-07 17:54:20', '2022-02-08 15:12:58');
 REPLACE INTO `gifts` (`id`, `name`, `quantity`, `ratio`, `created_at`, `updated_at`) VALUES
-	(3, 'Vé xem phim', 60, 65, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
+	(3, 'Vé xem phim', 60, 65, '2022-02-07 17:54:20', '2022-02-08 17:34:12');
 /*!40000 ALTER TABLE `gifts` ENABLE KEYS */;
 
 -- Dumping structure for table gotit-exam.migrations
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table gotit-exam.migrations: ~12 rows (approximately)
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
@@ -125,6 +125,8 @@ REPLACE INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(11, '2022_02_07_171859_create_gifts_table', 1);
 REPLACE INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(12, '2022_02_07_174324_create_vouchers_table', 1);
+REPLACE INTO `migrations` (`id`, `migration`, `batch`) VALUES
+	(14, '2022_02_08_151931_create_results_table', 2);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 
 -- Dumping structure for table gotit-exam.model_has_permissions
@@ -301,7 +303,7 @@ REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updat
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
 	(2, 2, 10937, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
-	(3, 2, 11875, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
+	(3, 2, 11875, 0, '2022-02-07 17:54:20', '2022-02-08 17:30:05');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
 	(4, 2, 13139, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
@@ -313,7 +315,7 @@ REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updat
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
 	(8, 3, 15152, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
-	(9, 1, 10293, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
+	(9, 1, 10293, 0, '2022-02-07 17:54:20', '2022-02-08 15:12:58');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
 	(10, 3, 13490, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
@@ -327,19 +329,19 @@ REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updat
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
 	(15, 2, 18125, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
-	(16, 1, 15481, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
+	(16, 1, 15481, 0, '2022-02-07 17:54:20', '2022-02-08 14:45:26');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
-	(17, 2, 10664, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
+	(17, 2, 10664, 0, '2022-02-07 17:54:20', '2022-02-08 17:33:50');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
-	(18, 2, 12421, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
+	(18, 2, 12421, 0, '2022-02-07 17:54:20', '2022-02-08 17:34:12');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
-	(19, 1, 17116, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
+	(19, 1, 17116, 0, '2022-02-07 17:54:20', '2022-02-08 14:43:50');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
 	(20, 2, 10219, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
 	(21, 3, 13321, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
-	(22, 1, 13933, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
+	(22, 1, 13933, 0, '2022-02-07 17:54:20', '2022-02-08 14:45:40');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
 	(23, 2, 11172, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
@@ -349,9 +351,9 @@ REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updat
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
 	(26, 1, 13081, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
-	(27, 1, 17850, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
+	(27, 1, 17850, 0, '2022-02-07 17:54:20', '2022-02-08 14:45:47');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
-	(28, 3, 13994, 1, '2022-02-07 17:54:20', '2022-02-08 06:20:28');
+	(28, 3, 13994, 0, '2022-02-07 17:54:20', '2022-02-08 06:20:28');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
 	(29, 3, 19792, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
@@ -359,7 +361,7 @@ REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updat
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
 	(31, 2, 12906, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
-	(32, 1, 12178, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
+	(32, 1, 12178, 0, '2022-02-07 17:54:20', '2022-02-08 14:45:54');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
 	(33, 1, 18078, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
@@ -373,7 +375,7 @@ REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updat
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
 	(38, 3, 13059, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
-	(39, 1, 13897, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
+	(39, 1, 13897, 0, '2022-02-07 17:54:20', '2022-02-08 14:46:01');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
 	(40, 3, 10992, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
@@ -395,7 +397,7 @@ REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updat
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
 	(49, 3, 15290, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
-	(50, 1, 18237, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
+	(50, 1, 18237, 0, '2022-02-07 17:54:20', '2022-02-08 14:46:07');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
 	(51, 2, 10142, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
@@ -417,7 +419,7 @@ REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updat
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
 	(60, 3, 11721, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
-	(61, 1, 15407, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
+	(61, 1, 15407, 0, '2022-02-07 17:54:20', '2022-02-08 14:46:14');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
 	(62, 1, 11500, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
@@ -425,11 +427,11 @@ REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updat
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
 	(64, 1, 15599, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
-	(65, 1, 13763, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
+	(65, 1, 13763, 0, '2022-02-07 17:54:20', '2022-02-08 14:46:21');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
-	(66, 1, 11908, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
+	(66, 1, 11908, 0, '2022-02-07 17:54:20', '2022-02-08 14:46:27');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
-	(67, 1, 17213, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
+	(67, 1, 17213, 0, '2022-02-07 17:54:20', '2022-02-08 14:46:33');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES
 	(68, 2, 18960, 0, '2022-02-07 17:54:20', '2022-02-07 17:54:20');
 REPLACE INTO `vouchers` (`id`, `user_id`, `code`, `status`, `created_at`, `updated_at`) VALUES

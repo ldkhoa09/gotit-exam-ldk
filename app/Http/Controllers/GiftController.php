@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gift;
+use App\Models\Result;
 use App\Models\User;
 use App\Models\Voucher;
 use Illuminate\Support\Facades\DB;
@@ -27,11 +28,7 @@ class GiftController extends Controller
         $randomValue = (float)rand() / (float)getrandmax() * 100;
         if ($user) {
 
-            $voucher = Voucher::where([
-                'user_id' => $user->id,
-                'code' => request('code'),
-                'status' => 0,
-            ])->first();
+            $voucher = $this->getVoucher($user->id,request('code'));
 
             if ($voucher) {
                 $items = $this->getGiftItems();
@@ -45,28 +42,35 @@ class GiftController extends Controller
                 if ($user->department_id === 1) {
                     $items = $this->setGiftRatioByDepartment($items);
                 }
-                // Select random gift
+                // Selecting random gift
                 $gift = $this->selectingRandomGift($items, (float)$randomValue);
-                // Update voucher status after using
-                Voucher::where('id',$voucher->id)->update(['status' => 1]);
-                // Update gift quantity
-                Gift::where('id',$gift->id)->update([
-                    'quantity' => $gift->quantity - 1,
-                ]);
+
+                $this->updateGiftResults($voucher,$user->id,$gift);
 
                 return Response::json(array(
-                    'success' => true,
-                    'data' => $gift
+                    'message' => "Chúc mừng bạn đã trúng $gift->name"
                 ));
 
             } else {
-                throw ValidationException::withMessages([
-                    'voucher-not-exists' => 'Voucher không tồn tại hoặc đã hết hạn',
-                ]);
+                $result = $this->getResult($user->id,request('code'));
+
+                if($result === null) {
+                    throw ValidationException::withMessages([
+                        'voucher-not-exists' => "Mã dự thưởng không tồn tại",
+                    ]);
+
+                }else{
+                    return Response::json(array(
+                        'message' => "Mã dự thưởng đã trúng $result->name trước đó", # received gift
+                    ));
+                }
+
+
             }
+
         } else {
             throw ValidationException::withMessages([
-                'user-not-exists' => 'User không tồn tại',
+                'user-not-exists' => 'Số điện thoại không tồn tại',
             ]);
         }
     }
@@ -138,5 +142,68 @@ class GiftController extends Controller
         }
 
         return $gift;
+    }
+
+    /**
+     * @param $userID
+     * @param $code
+     * @return mixed
+     */
+    private function getVoucher($userID, $code){
+        return Voucher::where([
+            'user_id' => $userID,
+            'code' => $code,
+            'status' => 0,
+        ])->first();
+    }
+
+    /**
+     * @param $voucher
+     * @param $userID
+     * @param $gift
+     * @return int
+     */
+    private function updateGiftResults($voucher,$userID,$gift): int
+    {
+        try {
+            // Update voucher status after using
+            Voucher::where('id',$voucher->id)->update(['status' => 1]);
+            // Update gift quantity
+            Gift::where('id',$gift->id)->update([
+                'quantity' => $gift->quantity - 1,
+            ]);
+            // Store results
+            Result::create([
+                'user_id' => $userID,
+                'gift_id' => $gift->id,
+                'voucher_code' => $voucher->code
+            ]);
+
+            return 1;
+
+        }catch (\Throwable $exception){
+            return 0;
+        }
+    }
+
+    /**
+     * @param $userID
+     * @param $voucherCode
+     * @return null
+     */
+    private function getResult($userID,$voucherCode)
+    {
+        $receivedGift = null;
+
+        $result = Result::where([
+            'user_id' => $userID,
+            'voucher_code' => $voucherCode,
+        ])->first();
+
+        if($result){
+            $receivedGift = Gift::where('id',$result->gift_id)->first();
+        }
+
+        return $receivedGift;
     }
 }

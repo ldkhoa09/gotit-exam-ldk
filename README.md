@@ -35,20 +35,24 @@
 
         php artisan migrate:fresh --seed
 
-   I created 3 seeders and migrations for this test and
+   I created 3 seeders and migrations for this exam 
+
    1. UserSeeder: 3 users with user_id in [1,2,3]
    2. GiftSeeder: 3 gifts 
    3. VoucherSeeder: 100 vouchers and random value user_id in [1,3,3]
 
    Or
+       Import database by sql file in "database/exam.sql". You can test with this data
 
-       Import database by sql file in "database/exam.sql"
+   1. Số điện thoại:  0903121123 | Mã dự thưởng : 12178, 14532, 15599, 18078 | Phòng ban 1
+   2. số điện thoại:  0905141221 | Mã dự thưởng : 14023, 12906, 18572, 15045 | Phòng ban 2
+   3. số điện thoại:  0902787212 | Mã dự thưởng : 16754, 19107, 10336, 16351 | Phòng ban 3
 
-7. Generate your application encryption key:
+8. Generate your application encryption key:
 
         php artisan key:generate
 
-8. Start the localhost server:
+9. Start the localhost server:
 
         php artisan serve
 
