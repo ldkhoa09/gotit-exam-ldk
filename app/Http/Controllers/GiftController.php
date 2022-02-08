@@ -83,7 +83,7 @@ class GiftController extends Controller
 
         if ($sumItemsRatio < 100) {
             foreach ($items as $item) {
-                $newItemRatio = round(($item->ratio * 100) / $sumItemsRatio);
+                $newItemRatio = ($item->ratio * 100) / $sumItemsRatio;
                 $item->ratio = $newItemRatio;
             }
         }
@@ -101,12 +101,13 @@ class GiftController extends Controller
         $minRatio = min(array_column($items, 'ratio'));
 
         $sumRatioOthers = 100 - $minRatio; # Calculate sum ratio of other items
+
         $newRatioOthers = $sumRatioOthers - 10; # Calculate sum ratio of other items for user in department 1
 
         foreach ($items as $item) {
             // Set ratio again for other items
             if ($item->ratio != $minRatio) {
-                $newItemRatio = round(($item->ratio * $newRatioOthers) / $sumRatioOthers);
+                $newItemRatio = ($item->ratio * $newRatioOthers) / $sumRatioOthers;
                 $item->ratio = $newItemRatio;
             } else {
                 $item->ratio = $item->ratio + 10;
