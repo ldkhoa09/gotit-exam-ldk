@@ -1,4 +1,4 @@
-### Haldata Console
+### LedangKhoa GotIT Exams
 
 1. Install `Composer` dependencies.
 
@@ -35,13 +35,17 @@
 
         php artisan migrate:fresh --seed
 
+   I created 3 seeders and migrations for this test and
+   1. UserSeeder: 3 users with user_id in [1,2,3]
+   2. GiftSeeder: 3 gifts 
+   3. VoucherSeeder: 100 vouchers and random value user_id in [1,3,3]
 
-7. Generate your application encryption key:
+8. Generate your application encryption key:
 
         php artisan key:generate
 
-
-8. Start the localhost server:
+9. Start the localhost server:
 
         php artisan serve
+
 

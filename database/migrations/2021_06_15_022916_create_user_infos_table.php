@@ -18,7 +18,7 @@ class CreateUserInfosTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->text('avatar')->nullable();
             $table->string('company')->nullable();
-            $table->string('website')->nullable();x
+            $table->string('website')->nullable();
             $table->string('country')->nullable();
             $table->string('language')->nullable();
             $table->string('timezone')->nullable();

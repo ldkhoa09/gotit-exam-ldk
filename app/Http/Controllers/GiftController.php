@@ -38,17 +38,15 @@ class GiftController extends Controller
 
                 if(!$items){
                     throw ValidationException::withMessages([
-                        'items-not-exists' => 'Chương trình đã kết thúc hoặc hết quà',
+                        'items-not-exists' => 'Chương trình đã kết thúc hoặc hết quà tặng',
                     ]);
                 }
 
                 if ($user->department_id === 1) {
                     $items = $this->setGiftRatioByDepartment($items);
                 }
-
                 // Select random gift
-                $gift = $this->selectingGift($items, (float)$randomValue);
-
+                $gift = $this->selectingRandomGift($items, (float)$randomValue);
                 // Update voucher status after using
                 Voucher::where('id',$voucher->id)->update(['status' => 1]);
                 // Update gift quantity
@@ -99,11 +97,14 @@ class GiftController extends Controller
      */
     private function setGiftRatioByDepartment(array $items): array
     {
-
+        // Get min ratio in items
         $minRatio = min(array_column($items, 'ratio'));
-        $sumRatioOthers = 100 - $minRatio;
-        $newRatioOthers = $sumRatioOthers - 10;
+
+        $sumRatioOthers = 100 - $minRatio; # Calculate sum ratio of other items
+        $newRatioOthers = $sumRatioOthers - 10; # Calculate sum ratio of other items for user in department 1
+
         foreach ($items as $item) {
+            // Set ratio again for other items
             if ($item->ratio != $minRatio) {
                 $newItemRatio = round(($item->ratio * $newRatioOthers) / $sumRatioOthers);
                 $item->ratio = $newItemRatio;
@@ -111,14 +112,22 @@ class GiftController extends Controller
                 $item->ratio = $item->ratio + 10;
             }
         }
+
         return $items;
     }
 
-    private function selectingGift(array $items, float $randomValue)
+    /**
+     * @note function select random gift in
+     * @param array $items
+     * @param float $randomValue
+     * @return mixed|null
+     */
+    private function selectingRandomGift(array $items, float $randomValue)
     {
         $ratio = 0;
 
         $gift = null;
+
         foreach ($items as $item) {
             $ratio += $item->ratio;
             if ($randomValue <= (float)($ratio) && (float)$item->ratio > 0) {
@@ -126,6 +135,7 @@ class GiftController extends Controller
                 break;
             }
         }
+
         return $gift;
     }
 }

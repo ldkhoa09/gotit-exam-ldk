@@ -51,10 +51,8 @@ var KTGiftHandle = function () {
                     // Simulate ajax request
                     axios.post(submitButton.closest('form').getAttribute('action'), new FormData(form))
                         .then(function (response) {
-                            console.log(response);
-                            // Show message popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
                             Swal.fire({
-                                text: "Chúc mừng bạn đã trúng" + response.data.data.name,
+                                text: "Chúc mừng bạn đã trúng " + response.data.data.name,
                                 icon: "success",
                                 buttonsStyling: false,
                                 confirmButtonText: "Ok, got it!",
@@ -104,8 +102,6 @@ var KTGiftHandle = function () {
             });
         });
     }
-
-
     return {
         // Initialization
         init: function () {
